@@ -13,7 +13,7 @@ const Index = () => {
         />
       </Helmet>
 
-      <main className="min-h-screen bg-background">
+      <main className="main-container">
         <Hero />
         <BooksList />
       </main>

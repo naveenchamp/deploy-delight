@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import BookCard from "./BookCard";
+import BookCard from "../BookCard";
+import "./index.css";
 
 interface Book {
   bookId: number;
@@ -39,7 +40,6 @@ const BooksList = () => {
   });
 
   useEffect(() => {
-    // Simulating API call with sample data
     setApiResponse({
       status: apiStatusConstants.success,
       data: [
@@ -124,10 +124,10 @@ const BooksList = () => {
   }, []);
 
   const renderLoadingView = () => (
-    <div className="flex items-center justify-center py-20">
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
-        <p className="text-muted-foreground">Loading books...</p>
+    <div className="loading-container">
+      <div className="loading-content">
+        <div className="loading-spinner" />
+        <p className="loading-text">Loading books...</p>
       </div>
     </div>
   );
@@ -135,12 +135,10 @@ const BooksList = () => {
   const renderBooksListView = () => {
     const { data } = apiResponse;
     return (
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-3xl font-semibold text-foreground mb-8 opacity-0 animate-fade-in">
-            Popular Books
-          </h2>
-          <div className="flex flex-col gap-6">
+      <section className="books-section">
+        <div className="books-container">
+          <h2 className="books-heading">Popular Books</h2>
+          <div className="books-list">
             {data?.map((book, index) => (
               <BookCard key={book.bookId} book={book} index={index} />
             ))}
@@ -151,10 +149,10 @@ const BooksList = () => {
   };
 
   const renderFailureView = () => (
-    <div className="flex items-center justify-center py-20">
-      <div className="text-center">
-        <p className="text-destructive font-medium mb-2">Something went wrong</p>
-        <p className="text-muted-foreground text-sm">{apiResponse.errorMsg}</p>
+    <div className="error-container">
+      <div className="error-content">
+        <p className="error-title">Something went wrong</p>
+        <p className="error-message">{apiResponse.errorMsg}</p>
       </div>
     </div>
   );
