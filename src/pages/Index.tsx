@@ -1,13 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Hero from "@/components/Hero";
+import BooksList from "@/components/BooksList";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Good Reads - Meet Your Next Favourite Book</title>
+        <meta
+          name="description"
+          content="Discover your next favorite book with Good Reads. Browse popular books, read reviews, and find your perfect read."
+        />
+      </Helmet>
+
+      <main className="min-h-screen bg-background">
+        <Hero />
+        <BooksList />
+      </main>
+    </>
   );
 };
 
